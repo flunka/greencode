@@ -1,7 +1,6 @@
 package endpoints
 
 import (
-	"fmt"
 	"net/http"
 	"sort"
 
@@ -53,7 +52,6 @@ func Report(c *gin.Context) {
 	}
 
 	for _, transaction := range transactions {
-		fmt.Printf("trans %+v\n", transaction)
 		debitAccount, isPresent := accounts[transaction.DebitAccount]
 		if !isPresent {
 			debitAccount = &Account{
@@ -62,7 +60,6 @@ func Report(c *gin.Context) {
 				CreditCount: 0,
 				Balance:     0.0,
 			}
-			fmt.Printf("new debit account %s\n", transaction.DebitAccount)
 			accounts[transaction.DebitAccount] = debitAccount
 		}
 		creditAccount, isPresent := accounts[transaction.CreditAccount]
@@ -73,7 +70,6 @@ func Report(c *gin.Context) {
 				CreditCount: 0,
 				Balance:     0.0,
 			}
-			fmt.Printf("new credit Account %s\n", transaction.CreditAccount)
 			accounts[transaction.CreditAccount] = creditAccount
 		}
 		do_transaction(debitAccount, creditAccount, transaction.Amount)
@@ -81,7 +77,6 @@ func Report(c *gin.Context) {
 	}
 	accounts_array := make([]Account, 0, len(accounts))
 	for _, value := range accounts {
-		fmt.Printf("%+v\n", value)
 		accounts_array = append(accounts_array, *value)
 	}
 	sort.Sort(ByAccount(accounts_array))
