@@ -8,13 +8,13 @@ import (
 )
 
 type Transaction struct {
-	DebitAccount  string  `json:"debitAccount"  binding:"required"`
-	CreditAccount string  `json:"creditAccount"  binding:"required"`
+	DebitAccount  string  `json:"debitAccount"  binding:"required,len=26"`
+	CreditAccount string  `json:"creditAccount"  binding:"required,len=26"`
 	Amount        float64 `json:"amount"  binding:"required"`
 }
 
 type Account struct {
-	Account     string  `json:"account"`
+	Account     string  `json:"account" binding:"len=26"`
 	DebitCount  int32   `json:"debitCount"`
 	CreditCount int32   `json:"creditCount"`
 	Balance     float64 `json:"balance"`
