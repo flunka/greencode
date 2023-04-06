@@ -1,13 +1,8 @@
 package main
 
-import (
-	"github.com/flunka/greencode/endpoints"
-	"github.com/gin-gonic/gin"
-)
+import "github.com/flunka/greencode/router"
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", endpoints.Ping)
-	r.POST("/transactions/report", endpoints.Report)
+	r := router.SetupRouter()
 	r.Run()
 }
