@@ -7,6 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const ATMEndpoint = "/atms/calculateOrder"
+
 type Task struct {
 	Region      int32  `json:"region" binding:"required,min=1,max=9999"`
 	RequestType string `json:"requestType" binding:"required,oneof='STANDARD' 'PRIORITY' 'SIGNAL_LOW' 'FAILURE_RESTART'"`

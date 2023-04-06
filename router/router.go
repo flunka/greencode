@@ -9,6 +9,6 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 	r.GET("/ping", endpoints.Ping)
 	r.POST("/transactions/report", endpoints.Report)
-	r.POST("/atms/calculateOrder", endpoints.Order)
+	r.POST(endpoints.ATMEndpoint, endpoints.Order)
 	return r
 }
