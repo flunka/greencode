@@ -3,6 +3,7 @@ package endpoints
 import (
 	"fmt"
 	"net/http"
+	"sort"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,6 +20,12 @@ type Account struct {
 	CreditCount int32   `json:"creditCount"`
 	Balance     float64 `json:"balance"`
 }
+
+type ByAccount []Account
+
+func (a ByAccount) Len() int           { return len(a) }
+func (a ByAccount) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a ByAccount) Less(i, j int) bool { return a[i].Account < a[j].Account }
 
 func (a *Account) withdraw(amount float64) {
 	a.Balance -= amount
@@ -75,5 +82,6 @@ func Report(c *gin.Context) {
 		fmt.Printf("%+v\n", value)
 		accounts_array = append(accounts_array, *value)
 	}
+	sort.Sort(ByAccount(accounts_array))
 	c.JSON(http.StatusOK, accounts_array)
 }
