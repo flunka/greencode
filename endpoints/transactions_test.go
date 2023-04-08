@@ -65,11 +65,11 @@ func TestReportTransactions(t *testing.T) {
 	}
 	for _, c := range cases {
 		router := gin.Default()
-		router.POST(TransationsEndpoint, Report)
+		router.POST(TransactionsEndpoint, Report)
 
 		w := httptest.NewRecorder()
 		var jsonData = c.payload
-		request, _ := http.NewRequest("POST", TransationsEndpoint, bytes.NewBuffer(jsonData))
+		request, _ := http.NewRequest("POST", TransactionsEndpoint, bytes.NewBuffer(jsonData))
 		request.Header.Set("Content-Type", "application/json; charset=UTF-8")
 		router.ServeHTTP(w, request)
 

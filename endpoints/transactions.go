@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const TransationsEndpoint = "/transactions/report"
+const TransactionsEndpoint = "/transactions/report"
 
 type Transaction struct {
 	DebitAccount  string  `json:"debitAccount"  binding:"required,len=26"`
