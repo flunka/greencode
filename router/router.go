@@ -10,5 +10,6 @@ func SetupRouter() *gin.Engine {
 	r.GET("/ping", endpoints.Ping)
 	r.POST(endpoints.TransactionsEndpoint, endpoints.Report)
 	r.POST(endpoints.ATMEndpoint, endpoints.Order)
+	r.POST(endpoints.OnlineGameEndpoint, endpoints.CaltulateOrder)
 	return r
 }
