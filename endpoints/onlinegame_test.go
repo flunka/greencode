@@ -17,7 +17,7 @@ func TestCaltulateOrder(t *testing.T) {
 		payload  []byte
 		response []byte
 	}{
-		{[]byte(`[{
+		{[]byte(`{
 			"groupCount": 6,
 			"clans": [
 			  {
@@ -111,9 +111,9 @@ func TestCaltulateOrder(t *testing.T) {
 		router.ServeHTTP(w, request)
 
 		want_bytes := c.response
-		var got []Account
+		var got [][]Clan
 
-		var want []Account
+		var want [][]Clan
 		_ = json.Unmarshal(want_bytes, &want)
 		_ = json.Unmarshal(w.Body.Bytes(), &got)
 
